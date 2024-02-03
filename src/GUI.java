@@ -12,9 +12,10 @@ public class GUI extends JFrame {
     private JButton btnNext;
 
     private int indexAktualniDeskovky = 0;
-    private final SpravceDeskovek spravceDeskovek = new SpravceDeskovek();
+    private final SpravceDeskovek spravceDeskovek;
 
-    public GUI() {
+    public GUI(SpravceDeskovek spravceDeskovek) {
+        this.spravceDeskovek = spravceDeskovek;
         initComponents();
         updateGUI();
         btnNext.addActionListener(e -> dalsiDeskovka());
