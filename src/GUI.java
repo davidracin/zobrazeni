@@ -20,7 +20,13 @@ public class GUI extends JFrame {
         updateGUI();
         btnNext.addActionListener(e -> dalsiDeskovka());
         btnPrevious.addActionListener(e -> predchoziDeskovka());
-        btnSave.addActionListener(e -> ulozDeskovku());
+        btnSave.addActionListener(e -> {
+            try {
+                ulozDeskovku();
+            } catch (OblibenostException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
     private void initComponents() {
@@ -30,7 +36,7 @@ public class GUI extends JFrame {
         pack();
     }
 
-    private void ulozDeskovku() {
+    private void ulozDeskovku() throws OblibenostException {
         String nazevHry = textField.getText();
         boolean zakoupeno = checkBox.isSelected();
         int oblibenost = 1;

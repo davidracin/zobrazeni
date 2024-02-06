@@ -21,6 +21,8 @@ public class SpravceDeskovek {
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
+        } catch (OblibenostException e) {
+            System.err.println(e.getLocalizedMessage());
         }
     }
     public void pridejDeskovku(Deskovka deskovka) {

@@ -3,13 +3,13 @@ public class Deskovka {
     private boolean zakoupeno;
     private int oblibenost;
 
-    public Deskovka(String nazevHry, boolean zakoupeno, int oblibenost) {
+    public Deskovka(String nazevHry, boolean zakoupeno, int oblibenost) throws OblibenostException {
         this.nazevHry = nazevHry;
         this.zakoupeno = zakoupeno;
-        this.oblibenost = oblibenost;
+        setOblibenost(oblibenost);
     }
 
-    public Deskovka(String nazevHry) {
+    public Deskovka(String nazevHry) throws OblibenostException {
         this(nazevHry, false, 1);
     }
 
@@ -33,7 +33,10 @@ public class Deskovka {
         return oblibenost;
     }
 
-    public void setOblibenost(int oblibenost) {
+    public void setOblibenost(int oblibenost) throws OblibenostException {
+        if (oblibenost <= 0 || oblibenost > 3){
+            throw new OblibenostException("Oblíbenost musí být v rozmezí 1-3");
+        }
         this.oblibenost = oblibenost;
     }
 }
