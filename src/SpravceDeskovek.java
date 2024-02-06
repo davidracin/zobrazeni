@@ -1,8 +1,9 @@
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SpravceDeskovek {
+public class SpravceDeskovek extends JFrame {
     private final ArrayList<Deskovka> seznamDeskovek = new ArrayList<>();
     public SpravceDeskovek() {
         cteni();
@@ -20,7 +21,8 @@ public class SpravceDeskovek {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (OblibenostException e) {
-            System.err.println(e.getLocalizedMessage());
+            JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
+            throw new RuntimeException(e);
         }
     }
     public void pridejDeskovku(Deskovka deskovka) {
