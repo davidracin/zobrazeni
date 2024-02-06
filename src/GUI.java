@@ -24,7 +24,7 @@ public class GUI extends JFrame {
             try {
                 ulozDeskovku();
             } catch (OblibenostException ex) {
-                throw new RuntimeException(ex);
+                throw new RuntimeException(ex.getLocalizedMessage());
             }
         });
     }
@@ -49,6 +49,7 @@ public class GUI extends JFrame {
         aktualniDeskovka.setNazevHry(nazevHry);
         aktualniDeskovka.setZakoupeno(zakoupeno);
         aktualniDeskovka.setOblibenost(oblibenost);
+        spravceDeskovek.setDeskovka(indexAktualniDeskovky, aktualniDeskovka);
     }
 
     private void predchoziDeskovka() {

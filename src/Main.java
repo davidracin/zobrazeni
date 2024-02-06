@@ -4,6 +4,5 @@ public class Main {
         spravceDeskovek.pridejDeskovku(new Deskovka("Krycí jména", true, 2));
         GUI gui = new GUI(spravceDeskovek);
         gui.setVisible(true);
-
     }
 }

@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,11 +26,27 @@ public class SpravceDeskovek {
     public void pridejDeskovku(Deskovka deskovka) {
         seznamDeskovek.add(deskovka);
     }
+
     public Deskovka getDeskovka(int index) {
         return seznamDeskovek.get(index);
     }
 
     public int getPocetDeskovek() {
         return seznamDeskovek.size();
+    }
+
+    public void setDeskovka(int indexAktualniDeskovky, Deskovka aktualniDeskovka) {
+        seznamDeskovek.set(indexAktualniDeskovky, aktualniDeskovka);
+        zapis();
+    }
+
+    private void zapis(){
+        try (PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("deskovky.txt")))) {
+            for (Deskovka deskovka : seznamDeskovek) {
+                printWriter.println(deskovka.getNazevHry() + ";" + (deskovka.isZakoupeno() ? "ano" : "ne") + ";" + deskovka.getOblibenost());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
