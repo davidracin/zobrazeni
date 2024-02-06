@@ -12,15 +12,22 @@ public class GUI extends JFrame {
     private JButton btnNext;
 
     private int indexAktualniDeskovky = 0;
-    private SpravceDeskovek spravceDeskovek;
+    private final SpravceDeskovek spravceDeskovek;
 
     public GUI(SpravceDeskovek spravceDeskovek) {
+        this.spravceDeskovek = spravceDeskovek;
         initComponents();
         updateGUI();
-        this.spravceDeskovek = spravceDeskovek;
         btnNext.addActionListener(e -> dalsiDeskovka());
         btnPrevious.addActionListener(e -> predchoziDeskovka());
         btnSave.addActionListener(e -> ulozDeskovku());
+    }
+
+    private void initComponents() {
+        setContentPane(mainPanel);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Čtení ze souboru");
+        pack();
     }
 
     private void ulozDeskovku() {
@@ -39,31 +46,32 @@ public class GUI extends JFrame {
     }
 
     private void predchoziDeskovka() {
+        btnNext.setEnabled(true);
         if (indexAktualniDeskovky > 0) {
             indexAktualniDeskovky--;
             updateGUI();
+        }else{
+            btnPrevious.setEnabled(false);
         }
     }
 
     private void dalsiDeskovka() {
+        btnPrevious.setEnabled(true);
         if (indexAktualniDeskovky < spravceDeskovek.getPocetDeskovek() - 1) {
             indexAktualniDeskovky++;
             updateGUI();
+        }else{
+            btnNext.setEnabled(false);
         }
     }
 
-    private void initComponents() {
-        setContentPane(mainPanel);
-        setTitle("Zobrazení dat ze souboru");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        pack();
-    }
     private void updateGUI() {
         if (spravceDeskovek.getPocetDeskovek() == 0) {
             textField.setText("");
             checkBox.setSelected(false);
             radBtn1.setSelected(true);
-        }else {Deskovka aktualniDeskovka = spravceDeskovek.getDeskovka(indexAktualniDeskovky);
+        }else {
+                Deskovka aktualniDeskovka = spravceDeskovek.getDeskovka(indexAktualniDeskovky);
                 textField.setText(aktualniDeskovka.getNazevHry());
                 checkBox.setSelected(aktualniDeskovka.isZakoupeno());
                 switch (aktualniDeskovka.getOblibenost()) {
