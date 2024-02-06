@@ -57,8 +57,6 @@ public class GUI extends JFrame {
         if (indexAktualniDeskovky > 0) {
             indexAktualniDeskovky--;
             updateGUI();
-        }else{
-            btnPrevious.setEnabled(false);
         }
     }
 
@@ -67,12 +65,16 @@ public class GUI extends JFrame {
         if (indexAktualniDeskovky < spravceDeskovek.getPocetDeskovek() - 1) {
             indexAktualniDeskovky++;
             updateGUI();
-        }else{
-            btnNext.setEnabled(false);
         }
     }
 
     private void updateGUI() {
+        if (indexAktualniDeskovky == 0) {
+            btnPrevious.setEnabled(false);
+        }
+        if (indexAktualniDeskovky == spravceDeskovek.getPocetDeskovek() - 1) {
+            btnNext.setEnabled(false);
+        }
         if (spravceDeskovek.getPocetDeskovek() == 0) {
             textField.setText("");
             checkBox.setSelected(false);
