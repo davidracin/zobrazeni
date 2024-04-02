@@ -10,6 +10,7 @@ public class GUI extends JFrame {
     private JButton btnPrevious;
     private JButton btnSave;
     private JButton btnNext;
+    private JButton btnTable;
 
     private int indexAktualniDeskovky = 0;
     private final SpravceDeskovek spravceDeskovek;
@@ -34,6 +35,11 @@ public class GUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Čtení ze souboru");
         pack();
+        btnTable.addActionListener(e -> zobrazTabulku());
+    }
+    private void zobrazTabulku() {
+        Tabulka tabulka = new Tabulka(spravceDeskovek);
+        tabulka.setVisible(true);
     }
 
     private void ulozDeskovku() throws OblibenostException {
