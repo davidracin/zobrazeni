@@ -19,7 +19,7 @@ public class SpravceDeskovek extends JFrame {
                 seznamDeskovek.add(new Deskovka(nazev, zakoupeno, oblibenost));
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(null, "Soubor nebyl nalezen");
         } catch (OblibenostException e) {
             JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
             throw new RuntimeException(e);
